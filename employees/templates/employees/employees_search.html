@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>ListView</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>emp_no</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees_list %}
+            <tr>
+                <td>{{ employee.emp_no }}</td>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.gender }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">조회 결과가 없습니다.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
