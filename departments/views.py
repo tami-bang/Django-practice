@@ -48,7 +48,7 @@ def department_search_api(request):
 class DepartmentsListView(ListView) :
     model = Departments
     template_name = "departments/department_list.html"
-    content_object_name = "departments"
+    context_object_name = "departments"
 
     def get_queryset(self) :
         queryset = super().get_queryset()
@@ -73,3 +73,8 @@ class DepartmentsUpdateView(UpdateView) :
     success_url = reverse_lazy("departments:department_list")
     form_class = DepartmentForm
     pk_url_kwarg = "dept_no"
+
+class DepartmentsDeleteView(DeleteView) :
+    model = Departments
+    success_url = reverse_lazy("departments:department_list")
+    #pk_url_kwarg = "dept_no"

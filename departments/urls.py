@@ -25,5 +25,6 @@ urlpatterns = [
     path('search-list/', views.DepartmentsListView.as_view(), name='department_list'),
     path('add/', views.DepartmentsCreateView.as_view(),name='department_add'),
     path('<str:pk>/edit', views.DepartmentsUpdateView.as_view(),name='department_update'),
+    path('delete/<str:pk>', views.DepartmentsDeleteView.as_view(),name='department_delete'),
     #127.0.0.1:8000/dapartments/d001/edit
 ]
