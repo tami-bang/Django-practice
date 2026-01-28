@@ -9,4 +9,6 @@ urlpatterns = [
     path('search-cbv/', views.EmployeesView.as_view(), name="search_cbv"),
     path('child-test/', views.child_test),
     path('search-list/', views.EmployeesSearchView.as_view()),
+    path('add/', views.EmployeesCreateView.as_view()),
 ]
+

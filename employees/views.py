@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 from django.views import View
 from django.views.decorators.http import require_GET
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
+
+from employees.form import EmployeeForm
 
 from .models import Employees
 
@@ -97,3 +100,9 @@ def child_test(request) :
 class EmployeesSearchView(ListView):
     model = Employees # context에 employee.emp_no 이렇게 접근 가능하게 해줌
     template_name = "employees/employees_search.html"
+
+class EmployeesCreateView(CreateView) :
+    model = Employees
+    template_name = "employees/employee_form.html"  # 새 폼 템플릿
+    success_url = reverse_lazy("employees:employee_list")  # 완료 후 이동
+    form_class = EmployeeForm

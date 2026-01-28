@@ -23,6 +23,5 @@ urlpatterns = [
     path('search/', views.department_search, name='department_search'),
     
     path('search-list/', views.DepartmentsListView.as_view(), name='department_list'),
-    path('add/', views.DepartmentsCreateView.as_view()), # , name='department_list'
-
+    path('add/', views.DepartmentsCreateView.as_view()),
 ]
