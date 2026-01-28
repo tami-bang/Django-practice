@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Departments</title>
 </head>
 <body>
@@ -16,7 +16,11 @@
         <tbody>
             {% for department in departments_list %}
             <tr>
-                <td>{{ department.dept_no }}</td>
+                <th scope="row">
+                    <a href="{% url 'departments:department_update' department.dept_no %}">
+                        {{ department.dept_no }}
+                    </a>
+                </th>
                 <td>{{ department.dept_name }}</td>
             </tr>
             {% empty %}

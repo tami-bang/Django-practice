@@ -23,5 +23,7 @@ urlpatterns = [
     path('search/', views.department_search, name='department_search'),
     
     path('search-list/', views.DepartmentsListView.as_view(), name='department_list'),
-    path('add/', views.DepartmentsCreateView.as_view()),
+    path('add/', views.DepartmentsCreateView.as_view(),name='department_add'),
+    path('<str:pk>/edit', views.DepartmentsUpdateView.as_view(),name='department_update'),
+    #127.0.0.1:8000/dapartments/d001/edit
 ]

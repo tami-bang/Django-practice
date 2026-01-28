@@ -12,11 +12,11 @@
 # departments/views.py
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.http import JsonResponse
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .form import DepartmentForm
 from .models import Departments
-from django.http import JsonResponse
-from django.views.generic import ListView, CreateView
 
 def department_search(request):
     # Query Parameter 가져오기
@@ -66,3 +66,10 @@ class DepartmentsCreateView(CreateView) :
     template_name = "departments/department_form.html"
     success_url = reverse_lazy("departments:department_list")
     form_class = DepartmentForm
+
+class DepartmentsUpdateView(UpdateView) :
+    model = Departments
+    template_name = "departments/department_form.html"
+    success_url = reverse_lazy("departments:department_list")
+    form_class = DepartmentForm
+    pk_url_kwarg = "dept_no"

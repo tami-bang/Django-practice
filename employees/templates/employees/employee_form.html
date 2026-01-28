@@ -54,44 +54,39 @@
 </div>
 {% endblock %}
 {% block scripts %}
-<script>
+<script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
-    new tempusDominus.TempusDominus(document.getElementById('birth_date_input'), {
+    new tempusDominus.TempusDominus(document.getElementById('birth_date_picker'), {
         display: {
+            viewMode: 'calendar',   // 달력만 표시
             components: {
+                decades: false,
+                year: true,
+                month: true,
+                date: true,
                 hours: false,
                 minutes: false,
                 seconds: false
-            },
-            buttons: {
-                today: true,
-                clear: true,
-                close: true
-            },
-            viewMode: 'calendar',
-            format: 'yyyy-MM-dd'   // << 날짜만 출력
+            }
         },
         useCurrent: false
     });
 
-    new tempusDominus.TempusDominus(document.getElementById('hire_date_input'), {
+    new tempusDominus.TempusDominus(document.getElementById('hire_date_picker'), {
         display: {
+            viewMode: 'calendar',
             components: {
+                decades: false,
+                year: true,
+                month: true,
+                date: true,
                 hours: false,
                 minutes: false,
                 seconds: false
-            },
-            buttons: {
-                today: true,
-                clear: true,
-                close: true
-            },
-            viewMode: 'calendar',
-            format: 'yyyy-MM-dd'
+            }
         },
         useCurrent: false
     });
 });
 </script>
-
 {% endblock %}

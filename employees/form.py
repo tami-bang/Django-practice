@@ -19,22 +19,21 @@ class EmployeeForm(forms.ModelForm):
     birth_date = forms.DateField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
-            "id": "birth_date_input",
+            "id": "birth_date_input",  # id 추가
             "placeholder": "생년월일 선택",
-            "data-target": "#birth_date_picker",
             "autocomplete": "off"
-    })
-)
+        })
+    )
 
     hire_date = forms.DateField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
-            "id": "hire_date_input",
+            "id": "hire_date_input",  # id 추가
             "placeholder": "입사일 선택",
-            "data-target": "#hire_date_picker",
             "autocomplete": "off"
         })
     )
+
     class Meta:
         model = Employees
         fields = ["emp_no", "birth_date", "first_name", "last_name", "gender", "hire_date"]
