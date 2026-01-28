@@ -45,3 +45,13 @@ def department_search_api(request):
 class DepartmentsListView(ListView) :
     model = Departments
     template_name = "departments/department_list.html"
+    content_object_name="departments"
+
+    def get_queryset(self) :
+        queryset = super().get_queryset()
+        dept_no = self.request.GET.get("dept_no")
+
+        if dept_no :
+            queryset = queryset.filter(dept_no=dept_no)
+        
+        return queryset
