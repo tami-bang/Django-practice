@@ -46,7 +46,7 @@ def department_search_api(request):
 class DepartmentsListView(ListView) :
     model = Departments
     template_name = "departments/department_list.html"
-    content_object_name="departments"
+    content_object_name = "departments"
 
     def get_queryset(self) :
         queryset = super().get_queryset()

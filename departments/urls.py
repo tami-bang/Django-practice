@@ -10,6 +10,8 @@
 from django.urls import path
 from . import views
 
+app_name = "departments"
+
 urlpatterns = [
     # JSON 반환 API
     path('api/departments/search', views.department_search_api, name='search_api'),
@@ -21,6 +23,6 @@ urlpatterns = [
     path('search/', views.department_search, name='department_search'),
     
     path('search-list/', views.DepartmentsListView.as_view(), name='department_list'),
-    path('add/', views.DepartmentsCreateView.as_view()),
+    path('add/', views.DepartmentsCreateView.as_view()), # , name='department_list'
 
 ]
