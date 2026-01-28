@@ -20,6 +20,7 @@ urlpatterns = [
     # search 경로도 HTML 렌더링에 연결
     path('search/', views.department_search, name='department_search'),
     
-    path('search-list/', views.DepartmentsListView.as_view()),
+    path('search-list/', views.DepartmentsListView.as_view(), name='department_list'),
+    path('add/', views.DepartmentsCreateView.as_view()),
 
 ]

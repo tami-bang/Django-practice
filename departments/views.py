@@ -11,9 +11,10 @@
 
 # departments/views.py
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from .models import Departments
 from django.http import JsonResponse
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 def department_search(request):
     # Query Parameter 가져오기
@@ -54,4 +55,11 @@ class DepartmentsListView(ListView) :
         if dept_no :
             queryset = queryset.filter(dept_no=dept_no)
         
+        queryset = queryset.order_by("dept_no")
         return queryset
+
+class DepartmentsCreateView(CreateView) :
+    model = Departments
+    fields = ["dept_no","dept_name"]
+    template_name = "departments/department_form.html"
+    success_url = reverse_lazy("departments:department_list")
