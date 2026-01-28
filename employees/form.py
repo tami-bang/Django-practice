@@ -1,20 +1,43 @@
 from django import forms
 from .models import Employees
 
-class EmployeeForm(forms.ModelForm) :
+class EmployeeForm(forms.ModelForm):
     GENDER_CHOICES = [
         ('M', '남'),
         ('F', '여'),
     ]
 
+    # 성별 선택
     gender = forms.ChoiceField(
         choices=[('', '성별 선택')] + GENDER_CHOICES,
-        widget=forms.Select(attrs={"class": "form-select"})
+        widget=forms.Select(attrs={
+            "class": "form-select"
+        }),
+        required=True
     )
 
-    class Meta :
+    birth_date = forms.DateField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "id": "birth_date_input",
+            "placeholder": "생년월일 선택",
+            "data-target": "#birth_date_picker",
+            "autocomplete": "off"
+    })
+)
+
+    hire_date = forms.DateField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "id": "hire_date_input",
+            "placeholder": "입사일 선택",
+            "data-target": "#hire_date_picker",
+            "autocomplete": "off"
+        })
+    )
+    class Meta:
         model = Employees
-        fields = ["emp_no", "first_name", "last_name", "gender"]
+        fields = ["emp_no", "birth_date", "first_name", "last_name", "gender", "hire_date"]
         widgets = {
             "emp_no": forms.TextInput(attrs={
                 "class": "form-control",

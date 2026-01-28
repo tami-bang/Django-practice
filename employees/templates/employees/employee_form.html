@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block title %}
 사원추가
 {% endblock %}
@@ -11,11 +12,86 @@
                 <h6 class="mb-4">사원 추가</h6>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+
+                    <div class="mb-3">
+                        {{ form.emp_no.label_tag }}
+                        {{ form.emp_no }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.gender.label_tag }}
+                        {{ form.gender }}
+                    </div>
+
+                    <div class="mb-3 input-group date" id="birth_date_picker" data-target-input="nearest">
+                        {{ form.birth_date }}
+                        <span class="input-group-text" data-target="#birth_date_picker" data-toggle="datetimepicker">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+
+                    <div class="mb-3 input-group date" id="hire_date_picker" data-target-input="nearest">
+                        {{ form.hire_date }}
+                        <span class="input-group-text" data-target="#hire_date_picker" data-toggle="datetimepicker">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
                     <button type="submit" class="btn btn-primary">저장</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    new tempusDominus.TempusDominus(document.getElementById('birth_date_input'), {
+        display: {
+            components: {
+                hours: false,
+                minutes: false,
+                seconds: false
+            },
+            buttons: {
+                today: true,
+                clear: true,
+                close: true
+            },
+            viewMode: 'calendar',
+            format: 'yyyy-MM-dd'   // << 날짜만 출력
+        },
+        useCurrent: false
+    });
+
+    new tempusDominus.TempusDominus(document.getElementById('hire_date_input'), {
+        display: {
+            components: {
+                hours: false,
+                minutes: false,
+                seconds: false
+            },
+            buttons: {
+                today: true,
+                clear: true,
+                close: true
+            },
+            viewMode: 'calendar',
+            format: 'yyyy-MM-dd'
+        },
+        useCurrent: false
+    });
+});
+</script>
+
 {% endblock %}
