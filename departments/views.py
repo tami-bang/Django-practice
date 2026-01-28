@@ -12,6 +12,8 @@
 # departments/views.py
 from django.shortcuts import render
 from django.urls import reverse_lazy
+
+from .form import DepartmentForm
 from .models import Departments
 from django.http import JsonResponse
 from django.views.generic import ListView, CreateView
@@ -60,6 +62,7 @@ class DepartmentsListView(ListView) :
 
 class DepartmentsCreateView(CreateView) :
     model = Departments
-    fields = ["dept_no","dept_name"]
+    #fields = ["dept_no", "dept_name"]
     template_name = "departments/department_form.html"
     success_url = reverse_lazy("departments:department_list")
+    form_class = DepartmentForm
