@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %} 
 
 {% block title %}Tami Corp{% endblock %}
 
@@ -6,7 +7,8 @@
 <div class="container-fluid pt-4 px-4">
     <h1 class="mb-4">Welcome, {{ name }}!</h1>
 
-    <div class="row g-4">
+    <!-- 카드 영역 -->
+    <div class="row g-4 mb-5">
         {% for card in cards %}
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
@@ -19,5 +21,109 @@
         </div>
         {% endfor %}
     </div>
+
+    <!-- 차트 영역 -->
+    <div class="row g-4">
+
+        <!-- Single Line Chart -->
+        <div class="col-md-6">
+            <h5>Single Line Chart</h5>
+            <canvas id="singleLineChart"></canvas>
+        </div>
+
+        <!-- Multi Line Chart -->
+        <div class="col-md-6">
+            <h5>Multi Line Chart</h5>
+            <canvas id="multiLineChart"></canvas>
+        </div>
+
+        <!-- Single Bar Chart -->
+        <div class="col-md-6">
+            <h5>Single Bar Chart</h5>
+            <canvas id="singleBarChart"></canvas>
+        </div>
+
+        <!-- Multi Bar Chart -->
+        <div class="col-md-6">
+            <h5>Multi Bar Chart</h5>
+            <canvas id="multiBarChart"></canvas>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="col-md-6">
+            <h5>Pie Chart</h5>
+            <canvas id="pieChart"></canvas>
+        </div>
+
+        <!-- Doughnut Chart -->
+        <div class="col-md-6">
+            <h5>Doughnut Chart</h5>
+            <canvas id="doughnutChart"></canvas>
+        </div>
+    </div>
 </div>
+
+<!-- Chart.js 라이브러리 -->
+<script src="{% static 'lib/chart/chart.min.js' %}"></script>
+<script>
+    // 싱글 라인 차트
+    new Chart(document.getElementById('singleLineChart'), {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+            datasets: [{label: 'Sales', data: [12,19,3,5], borderColor: 'blue', fill: false}]
+        }
+    });
+
+    // 멀티 라인 차트
+    new Chart(document.getElementById('multiLineChart'), {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+            datasets: [
+                {label: 'Sales', data: [12,19,3,5], borderColor: 'blue', fill:false},
+                {label: 'Users', data: [2,9,13,5], borderColor: 'red', fill:false}
+            ]
+        }
+    });
+
+    // 싱글 바 차트
+    new Chart(document.getElementById('singleBarChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+            datasets: [{label: 'Sales', data: [12,19,3,5], backgroundColor: 'blue'}]
+        }
+    });
+
+    // 멀티 바 차트
+    new Chart(document.getElementById('multiBarChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+            datasets: [
+                {label: 'Sales', data: [12,19,3,5], backgroundColor: 'blue'},
+                {label: 'Users', data: [2,9,13,5], backgroundColor: 'red'}
+            ]
+        }
+    });
+
+    // 파이 차트
+    new Chart(document.getElementById('pieChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Sales','Users','Other'],
+            datasets: [{data: [12,19,3], backgroundColor:['blue','red','green']}]
+        }
+    });
+
+    // 도넛 차트
+    new Chart(document.getElementById('doughnutChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Sales','Users','Other'],
+            datasets: [{data: [12,19,3], backgroundColor:['blue','red','green']}]
+        }
+    });
+</script>
 {% endblock %}

@@ -11,13 +11,29 @@ logger = logging.getLogger(__name__)
 
 def home(request: WSGIRequest):
     """
-    홈 뷰
-    로그인한 사용자가 접속하면 이름 기록
+    로그인 후 기본 페이지: chart.html
     """
-    if request.user.is_authenticated:
-        logger.info(f"Login: {request.user.get_full_name() or request.user.username}")
-    return render(request, "dashboard/chart.html")
+    # 로그인 정보 로그 기록
+    user_name = f"{request.user.first_name} {request.user.last_name}".strip()
+    logger.info(f"Login: {user_name or request.user.username}")
 
+    username = request.user.username
+    default_image = 'img/user.jpg'
+    user_image_path = f'static/img/{username}.jpg'
+
+    # 프로필 이미지 존재 여부 확인
+    full_path = os.path.join(settings.BASE_DIR, user_image_path)
+    profile_image = f'img/{username}.jpg' if os.path.exists(full_path) else default_image
+
+    context = {
+        'name': request.user.get_full_name() or username,
+        'profile_image': profile_image,
+        'cards': [
+            {'title': 'Sales', 'value': '₩12,345', 'icon': 'fa-chart-line'},
+            {'title': 'Users', 'value': '1,234', 'icon': 'fa-users'},
+        ]
+    }
+    return render(request, "dashboard/chart.html", context)
 
 @login_required
 def chart_view(request: WSGIRequest):
@@ -38,9 +54,5 @@ def chart_view(request: WSGIRequest):
     context = {
         'name': request.user.get_full_name() or username,
         'profile_image': profile_image,
-        'cards': [
-            {'title': 'Sales', 'value': '₩12,345', 'icon': 'fa-chart-line'},
-            {'title': 'Users', 'value': '1,234', 'icon': 'fa-users'},
-        ]
     }
     return render(request, 'chart.html', context)
