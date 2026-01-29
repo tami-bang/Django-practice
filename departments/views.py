@@ -62,10 +62,14 @@ class DepartmentsListView(ListView) :
 
 class DepartmentsCreateView(CreateView) :
     model = Departments
-    #fields = ["dept_no", "dept_name"]
     template_name = "departments/department_form.html"
-    success_url = reverse_lazy("departments:department_list")
     form_class = DepartmentForm
+    success_url = reverse_lazy("departments:department_create")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["departments"] = Departments.objects.order_by("dept_no")
+        return context
 
 class DepartmentsUpdateView(UpdateView) :
     model = Departments

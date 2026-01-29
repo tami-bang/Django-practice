@@ -1,43 +1,53 @@
-<!DOCTYPE html> 
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departments</title>
-</head>
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>부서번호</th>
-                <th>부서이름</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for department in departments %}
-            <tr>
-                <th scope="row">
-                    <a href="{% url 'departments:department_update' department.dept_no %}">
-                        {{ department.dept_no }}
-                    </a>
-                </th>
-                <td>{{ department.dept_name }}</td>
-                <td>
-                    <form method="post" action="{% url 'departments:department_delete' department.dept_no%}" onsubmit="return confirm('정말 삭제 하시겠습니까?');">
+{% extends "base.html" %}
+{% load static %}
 
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn=sm btn=outline-danger">
-                            삭제
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="2">조회 결과가 없습니다.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
-</html>
+{% block title %}Departments{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Departments admin</h6>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">부서번호</th>
+                        <th scope="col">부서이름</th>
+                        <th scope="col">관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for department in departments %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'departments:department_update' department.dept_no %}"
+                               class="text-primary text-decoration-none">
+                                {{ department.dept_no }}
+                            </a>
+                        </td>
+                        <td>{{ department.dept_name }}</td>
+                        <td>
+                            <form method="post"
+                                  action="{% url 'departments:department_delete' department.dept_no %}"
+                                  onsubmit="return confirm('정말 삭제 하시겠습니까?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    삭제
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            조회 결과가 없습니다.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
