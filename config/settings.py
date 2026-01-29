@@ -131,4 +131,16 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-LOGIN_REDIRECT_URL = "/"
+#LOGIN_REDIRECT_URL = "/"
+
+
+SESSION_COOKIE_AGE = 60 * 30             # 30분
+#SESSION_COOKIE_AGE = 10                 # 10초
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True        # 활동 시 만료시간 연장
+
+# 로그인 페이지 URL
+LOGIN_URL = '/signin/'          # 로그인 안 된 사용자가 접근하면 여기로 리디렉트
+
+# 로그인 성공 후 리디렉션 URL
+LOGIN_REDIRECT_URL = '/chart/'  # 로그인 후 처음 보여줄 페이지

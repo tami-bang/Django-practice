@@ -15,10 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-# config/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from accounts import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +26,11 @@ urlpatterns = [
     path('employees/',include('employees.urls')),
     #path('salaries/',include('salaries.urls')),
     #path('titles/',include('titles.urls')),
+
+    # 로그인
     path('signin/', auth_views.LoginView.as_view(template_name="signin.html"), name="login"),
     path('accounts/', include('accounts.urls')),
-    path('', include("departments.urls")),
+    #path('', include("departments.urls")),
+    path('chart/', views.chart_view, name='chart'),  # FBV 연결
+    path('', views.chart_view),  # 로그인 후 첫 페이지
 ]
