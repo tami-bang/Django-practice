@@ -143,4 +143,4 @@ SESSION_SAVE_EVERY_REQUEST = True        # 활동 시 만료시간 연장
 LOGIN_URL = '/signin/'          # 로그인 안 된 사용자가 접근하면 여기로 리디렉트
 
 # 로그인 성공 후 리디렉션 URL
-LOGIN_REDIRECT_URL = '/chart/'  # 로그인 후 처음 보여줄 페이지
+LOGIN_REDIRECT_URL = '/'  # 로그인 후 처음 보여줄 페이지
