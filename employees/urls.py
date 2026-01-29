@@ -1,6 +1,8 @@
 from django.urls import include, path
 from . import views
 
+app_name = 'employees' 
+
 urlpatterns = [
     path('read/', views.read),
     path('table/', views.table),

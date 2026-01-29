@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,3 +145,33 @@ LOGIN_URL = '/signin/'          # 로그인 안 된 사용자가 접근하면 �
 
 # 로그인 성공 후 리디렉션 URL
 LOGIN_REDIRECT_URL = '/'  # 로그인 후 처음 보여줄 페이지
+
+LOGGING = {
+    "version" : 1,
+    "disable_existing_loggers" : False,
+
+    "formatters" : {
+        "verbose" : {
+            "format" : "[{asctime}] [{levelname}] {name} - {message}",
+            "style" : "{",
+        },
+    },
+
+    "handlers" : {
+        "daily_file" : {
+            "class" : "logging.handlers.TimedRotatingFileHandler",
+            "level" : "INFO",
+            "filename" : os.path.join(BASE_DIR, "logs/app.log"),
+            "when" : "midnight",
+            "interval" : 1,
+            "backupCount" : 14,
+            "encoding" : "utf-8",
+            "formatter" : "verbose",
+        },
+    },
+
+    "root" : {
+        "handlers" : ["daily_file"],
+        "level" : "INFO",
+    },
+ }

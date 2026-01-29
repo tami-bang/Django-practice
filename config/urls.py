@@ -24,9 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('departments/',include('departments.urls')),
     path('employees/',include('employees.urls')),
-    #path('salaries/',include('salaries.urls')),
-    #path('titles/',include('titles.urls')),
-    #path('', include("departments.urls")),
+    path('salaries/',include('salaries.urls')),
+    path('titles/',include('titles.urls')),
+    # #path('', include("departments.urls")),
 
     # 로그인 페이지
     path('signin/', auth_views.LoginView.as_view(template_name="signin.html"), name="login"),
