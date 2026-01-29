@@ -212,3 +212,8 @@ django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000
 [2026-01-29 13:51:04,532] [WARNING] django.request - Not Found: /home/
 [2026-01-29 13:51:04,578] [WARNING] django.request - Not Found: /static/
 [2026-01-29 13:51:08,924] [INFO] dashboard.views - Chart viewed by: jikkyo han
+[2026-01-29 13:54:55,484] [INFO] dashboard.views - Chart viewed by: jikkyo han
+[2026-01-29 13:54:58,522] [WARNING] django.request - Not Found: /이ㅓ
+[2026-01-29 13:54:58,563] [WARNING] django.request - Not Found: /static/
+[2026-01-29 13:55:41,530] [WARNING] django.request - Not Found: /이ㅓ
+[2026-01-29 13:55:41,572] [WARNING] django.request - Not Found: /static/
