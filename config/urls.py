@@ -18,6 +18,7 @@ Including another URLconf
 # config/urls.py
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,7 @@ urlpatterns = [
     path('employees/',include('employees.urls')),
     #path('salaries/',include('salaries.urls')),
     #path('titles/',include('titles.urls')),
+    path('signin/', auth_views.LoginView.as_view(template_name="signin.html"), name="login"),
+    path('accounts/', include('accounts.urls')),
+    path('', include("departments.urls")),
 ]
