@@ -2,61 +2,65 @@
 {% block title %}사원정보 조회{% endblock %}
 
 {% block content %}
-    <!-- Table Start -->
-    <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-            <div class="col-sm-12">
-                <div class="bg-secondary rounded h-100 p-4">
-                    <h6 class="mb-4">사원정보 조회 ({{employees|length}})</h6>
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <label class="col-sm-2 col-form-label">사원번호</label>
-                            <input
-                                class="form-control bg-dark border-0"
-                                placeholder="emp_no"
-                                type="text"
-                                name="emp_no"
-                                value="{{ request.POST.emp_no|default:'' }}"
-                            />
-                            <label class="col-sm-2 col-form-label">이름</label>
-                            <input
-                                class="form-control bg-dark border-0"
-                                placeholder="first_name"
-                                type="text"
-                                name="first_name"
-                                value="{{ request.POST.first_name|default:'' }}"
-                            />
-                            <button type="submit" class="btn btn-danger m-2">
-                                조회
-                            </button>
-                        </div>
-                    </form>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Emp_no</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">birth date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for employee in employees %}
-                            <tr>    
-                                <th scope="row">{{ employee.emp_no }}</th>
-                                <td>{{ employee.first_name }}</td>
-                                <td>{{ employee.last_name }}</td>
-                                <td>{{ employee.gender }}</td>
-                                <td>{{ employee.birth_date }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12">
+            <div class="bg-secondary rounded h-100 p-4">
+
+                <h6 class="mb-4">사원정보 조회 ({{ employees|length }})</h6>
+
+                <!-- 🔑 GET 검색 -->
+                <form method="get">
+                    <div class="input-group mb-3">
+                        <label class="col-sm-2 col-form-label">사원번호</label>
+                        <input
+                            class="form-control bg-dark border-0"
+                            name="emp_no"
+                            value="{{ request.GET.emp_no|default:'' }}"
+                        />
+
+                        <label class="col-sm-2 col-form-label">이름</label>
+                        <input
+                            class="form-control bg-dark border-0"
+                            name="first_name"
+                            value="{{ request.GET.first_name|default:'' }}"
+                        />
+
+                        <button type="submit" class="btn btn-danger m-2">
+                            조회
+                        </button>
+                    </div>
+                </form>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Emp No</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Birth Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in employees %}
+                        <tr>
+                            <td>{{ employee.emp_no }}</td>
+                            <td>{{ employee.first_name }}</td>
+                            <td>{{ employee.last_name }}</td>
+                            <td>{{ employee.gender }}</td>
+                            <td>{{ employee.birth_date }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">조회 결과가 없습니다.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
-    <!-- Table End -->
+</div>
 {% endblock %}

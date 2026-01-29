@@ -106,7 +106,8 @@
             </div>
 
             <!-- Employees -->
-            <a href="{% url 'employees:search_cbv' %}" class="nav-item nav-link {% if request.resolver_match.app_name == 'employees' %}active{% endif %}">
+            <a href="{% url 'employees:employee_list' %}"
+              class="nav-item nav-link {% if request.resolver_match.app_name == 'employees' %}active{% endif %}">
               <i class="fa fa-th me-2"></i>Employees
             </a>
 

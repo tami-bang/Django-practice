@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+<!-- Dashboard Charts Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <!-- Single Line Chart -->
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Single Line Chart</h6>
+                <canvas id="line-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Multiple Line Chart -->
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Multiple Line Chart</h6>
+                <canvas id="salse-revenue"></canvas>
+            </div>
+        </div>
+
+        <!-- Single Bar Chart -->
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Single Bar Chart</h6>
+                <canvas id="bar-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Multiple Bar Chart -->
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Multiple Bar Chart</h6>
+                <canvas id="worldwide-sales"></canvas>
+            </div>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Pie Chart</h6>
+                <canvas id="pie-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Doughnut Chart -->
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Doughnut Chart</h6>
+                <canvas id="doughnut-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Dashboard Charts End -->
+
+<!-- JSON Data for Chart.js -->
+{{ char_lables|json_script:"chart-labels" }}
+{{ char_data|json_script:"chart-data" }}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // JSON 데이터 가져오기
+    const labels = JSON.parse(document.getElementById("chart-labels").textContent);
+    const datas = JSON.parse(document.getElementById("chart-data").textContent);
+
+    // Single Line Chart
+    var ctxLine = document.getElementById("line-chart").getContext("2d");
+    new Chart(ctxLine, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Sales",
+                data: datas,
+                fill: false,
+                backgroundColor: "rgba(235, 22, 22, .7)",
+                borderColor: "rgba(235, 22, 22, .7)",
+                tension: 0.4
+            }]
+        },
+        options: { responsive: true }
+    });
+
+    // 필요 시 다른 차트도 datas/labels를 활용하여 동일 방식으로 생성 가능
+});
+</script>
+{% endblock %}

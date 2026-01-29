@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from accounts import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,3 +41,7 @@ urlpatterns = [
     # 로그인 후 첫 화면 (dashboard.urls를 통해 chart.html)
     path('', include('dashboard.urls')),  # '/' 접속 시 chart.html
 ]
+
+# 개발용 static 파일 서빙
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
