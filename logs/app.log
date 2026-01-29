@@ -1,0 +1,14 @@
+[2026-01-29 12:44:16,120] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+[2026-01-29 12:44:44,517] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+[2026-01-29 12:45:20,434] [INFO] django.utils.autoreload - D:\python\ai1_django\dashboard\views.py changed, reloading.
+[2026-01-29 12:45:21,370] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+[2026-01-29 12:45:28,310] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+[2026-01-29 12:49:24,812] [INFO] django.utils.autoreload - D:\python\ai1_django\dashboard\views.py changed, reloading.
+[2026-01-29 12:49:25,629] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+[2026-01-29 12:50:00,080] [INFO] django.utils.autoreload - D:\python\ai1_django\dashboard\views.py changed, reloading.
+[2026-01-29 12:50:00,893] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+[2026-01-29 12:52:13,678] [INFO] django.utils.autoreload - D:\python\ai1_django\dashboard\views.py changed, reloading.
+[2026-01-29 12:52:14,705] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+[2026-01-29 12:52:16,699] [INFO] dashboard.views - Chart viewed by: jikkyo han
+[2026-01-29 12:53:15,554] [INFO] django.utils.autoreload - D:\python\ai1_django\dashboard\views.py changed, reloading.
+[2026-01-29 12:53:16,416] [INFO] django.utils.autoreload - Watching for file changes with StatReloader
